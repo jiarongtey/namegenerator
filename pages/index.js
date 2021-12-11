@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Head from "next/head";
 
 export default function Home() {
   const [type, setType] = useState("Application");
@@ -19,7 +20,7 @@ export default function Home() {
 
   useEffect(() => {
     if (type !== "") {
-      fetch("/static/" + type + ".txt")
+      fetch("/application.txt")
         .then((r) => r.text())
         .then((text) => {
           const lines = text.split("\n");
@@ -35,6 +36,10 @@ export default function Home() {
 
   return (
     <div>
+      <Head>
+        <title>Name Generator</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="mt-5 mx-5">
         <h1 className="font-bold text-3xl ">Name Generator</h1>
         <div className="badge badge-accent mt-3 ml-1">machine</div>
